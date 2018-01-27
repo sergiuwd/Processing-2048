@@ -172,12 +172,8 @@ int[] reverseArr(int[] arr) {
 // Shifts and combinations to be applied to a certain arr
 int[] applyMovement(int[] arr) {
   arr = shift(arr);
-  
-  for(int i = 0; i < round(boardSize / 2); i++) {
-    arr = combine(arr);
-    arr = shift(arr);
-  }
-  
+  arr = combine(arr);
+  arr = shift(arr);
   return arr;
 }
 
