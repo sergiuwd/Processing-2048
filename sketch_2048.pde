@@ -20,6 +20,7 @@ void draw() {
       fill(255);
       
       if (board[i][j] > 0) {
+        // Cells that have a value
         int colorBias = board[i][j] * 2;
         if(colorBias > 255) {
           colorBias = 255;
@@ -35,12 +36,14 @@ void draw() {
         textAlign(CENTER, CENTER);
         text(board[i][j], i * cellWidth + cellWidth / 2, j * cellHeight + cellHeight / 2);
       } else {
+        // Empty cells
         fill(250);
         rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
       }
     }
   }
   
+  // Show the GAME OVER screen
   if(!canMove()) {
     fill(255, 150, 150, 240);
     rect(0, 0, width, height);
