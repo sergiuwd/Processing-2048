@@ -82,13 +82,13 @@ boolean canMove() {
   }
   
   // Check if there are combinations available
-  for(int i = 1; i < boardSize - 1; i++) {
-    for(int j = 1; j < boardSize - 1; j++) {
+  for(int i = 0; i < boardSize; i++) {
+    for(int j = 0; j < boardSize; j++) {
       // Check if it can combine down
-      if(board[i][j] == board[i][j + 1] ||
-        board[i][j] == board[i][j - 1]  ||
-        board[i][j] == board[i - 1][j]  ||
-        board[i][j] == board[i + 1][j]){
+      if(j < boardSize - 1 && board[i][j] == board[i][j + 1] ||
+         j > 0             && board[i][j] == board[i][j - 1] ||
+         i > 0             && board[i][j] == board[i - 1][j] ||
+         i < boardSize - 1 && board[i][j] == board[i + 1][j] ){
           hasMoves = true;
         }
     }
