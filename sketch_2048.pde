@@ -7,11 +7,6 @@ boolean moved = false;
 void setup() {
   size(400, 400);
   reset();
-  
-  board[0][0] = 2;
-  board[0][1] = 2;
-  board[0][2] = 4;
-  board[0][3] = 4;
 }
 
 void draw() {
@@ -143,7 +138,6 @@ int[] shift(int[] col) {
   // Check if moved
   for(int i = 0; i < boardSize; i++) {
     if(col[i] != newCol[i]) {
-      println(col[i] + " not equal with " + newCol[i] + " on " + i);
       moved = true;
     }
   }
@@ -178,9 +172,12 @@ int[] reverseArr(int[] arr) {
 // Shifts and combinations to be applied to a certain arr
 int[] applyMovement(int[] arr) {
   arr = shift(arr);
-  arr = combine(arr);
-  arr = shift(arr);
-  arr = combine(arr);
+  
+  for(int i = 0; i < round(boardSize / 2); i++) {
+    arr = combine(arr);
+    arr = shift(arr);
+  }
+  
   return arr;
 }
 
@@ -189,8 +186,7 @@ void keyPressed() {
   switch(keyCode) {
   case DOWN:
     for (int i = 0; i < boardSize; i++) {
-      board[i] = shift(board[i]);
-      board[i] = combine(board[i]);
+      board[i] = applyMovement(board[i]);
     }
     break;
   case UP:
