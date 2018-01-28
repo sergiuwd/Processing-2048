@@ -84,7 +84,7 @@ boolean canMove() {
   // Check if there are combinations available
   for(int i = 0; i < boardSize; i++) {
     for(int j = 0; j < boardSize; j++) {
-      // Check if it can combine down
+      // Check if it can combine
       if(j < boardSize - 1 && board[i][j] == board[i][j + 1] ||
          j > 0             && board[i][j] == board[i][j - 1] ||
          i > 0             && board[i][j] == board[i - 1][j] ||
@@ -131,7 +131,7 @@ int[] shift(int[] col) {
   int index = boardSize - 1;
   
   // Do the shifting
-  for (int j = 3; j >= 0; j--) {
+  for (int j = boardSize -1; j >= 0; j--) {
     if (col[j] > 0) {
       newCol[index] = col[j];
       index--;
@@ -191,7 +191,6 @@ void keyPressed() {
   case UP:
     for (int i = 0; i < boardSize; i++) {
       int[] newList = reverseArr(board[i]);
-      newList = shift(newList);
       newList = applyMovement(newList);
       board[i] = reverseArr(newList);
     }
