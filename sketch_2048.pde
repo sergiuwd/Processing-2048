@@ -3,6 +3,7 @@ int board[][] = new int[boardSize][boardSize];
 int initialItemsNr = 4;
 int rootNr = 2;
 boolean moved = false;
+int score = 0;
 
 void setup() {
   size(400, 400);
@@ -49,23 +50,11 @@ void draw() {
     rect(0, 0, width, height);
     fill(80);
     text("Game Over!", width / 2, 50);
-    text("Your score: " + getScore(), width / 2, 100);
+    text("Your score: " + score, width / 2, 100);
     textSize(20);
     fill(0);
     text("Press ENTER to start over", width / 2, height - 50);
   }
-}
-
-// Calculate the score
-int getScore() {
-  int score = 0;
-  for(int i = 0; i < boardSize; i++) {
-    for(int j = 0; j < boardSize; j++) {
-      score += board[i][j];
-    }
-  }
-  
-  return score;
 }
 
 // Check if there are any available movements
@@ -154,6 +143,7 @@ int[] combine(int[] arr) {
   for (int i = arr.length - 1; i > 0; i--) {
     if (arr[i] > 0 && arr[i] == arr[i - 1]) {
       arr[i] *= 2;
+      score += arr[i];
       arr[i - 1] = 0;
       moved = true;
     }
